@@ -52,3 +52,10 @@ class HomeViewController: UIViewController {
         }
     }
 }
+
+extension HomeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
