@@ -10,7 +10,7 @@ import UIKit
 class WeatherListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
-    var model = WeatherListViewModel()
+    var model = WeatherListViewModel(networkManager: NetworkManager())
     var lat: String = ""
     var long: String = ""
     var locationName: String = ""
@@ -51,6 +51,10 @@ extension WeatherListViewController: WeatherListViewModelDelegate {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+    
+    func serviceFailed(message: String) {
+        showAlert(in: self, with: "Error!", message: message)
     }
 }
 

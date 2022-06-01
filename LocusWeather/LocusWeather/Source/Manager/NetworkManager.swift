@@ -9,6 +9,7 @@ import Foundation
 
 enum NetworkError: Error {
     case fetchFailed(Error)
+    case unKnown(String)
 }
 
 enum Result<Success, Failure: Error> {
@@ -28,13 +29,14 @@ extension Result {
     }
 }
 
-class NetworkManager {
-    public static var shared = NetworkManager()
-    
-    private init() {}
-
+protocol NetworkManagerProtocol {
     func callURL(url: URL, completionHandler: @escaping (Result<Data,
-                                                                NetworkError>) -> Void) {
+                                                         NetworkError>) -> Void)
+}
+
+final class NetworkManager: NetworkManagerProtocol {    
+    func callURL(url: URL, completionHandler: @escaping (Result<Data,
+                                                         NetworkError>) -> Void) {
         let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) -> Void in
             let dataTaskError = error.map { NetworkError.fetchFailed($0)}
             

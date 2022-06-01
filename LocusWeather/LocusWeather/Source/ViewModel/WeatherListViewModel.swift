@@ -15,11 +15,17 @@ enum WeatherError: Error {
 
 protocol WeatherListViewModelDelegate {
     func refreshView()
+    func serviceFailed(message: String)
 }
 
 class WeatherListViewModel {
     var delegate: WeatherListViewModelDelegate?
     var weatherList = [WeatherViewModel]()
+    private let networkManager: NetworkManagerProtocol
+    
+    init(networkManager: NetworkManagerProtocol = NetworkManager()) {
+        self.networkManager = networkManager
+    }
     
     func getWeatherList(lat: String, long: String) throws {
 //        let urlStr = String(format: HOST+FORECAST_API, arguments: [lat,long,APP_Key])
@@ -32,7 +38,7 @@ class WeatherListViewModel {
             throw WeatherError.wrongURL("The url entered is not correct")
         }
         
-        NetworkManager.shared.callURL(url: url) {[weak self] (result) in
+        networkManager.callURL(url: url) {[weak self] (result) in
             switch result {
             case .success(let data):
                 self?.updateViewModel(data: data, completionHandler: { (model, error) in
@@ -53,14 +59,15 @@ class WeatherListViewModel {
             case .failure(let error):
                 switch error {
                 case .fetchFailed(_):
-                    print(error.localizedDescription)
-                    
+                    self?.delegate?.serviceFailed(message: error.localizedDescription)
+                case .unKnown(let message):
+                    self?.delegate?.serviceFailed(message: message)
                 }
             }
         }
     }
     
-    private func updateViewModel(data: Data, completionHandler: ([WeatherViewModel], WeatherError?) -> Void) {
+    func updateViewModel(data: Data, completionHandler: ([WeatherViewModel], WeatherError?) -> Void) {
         var model = [WeatherViewModel]()
         do {
             let weatherModel = try JSONDecoder().decode(WeatherModel.self, from: data)

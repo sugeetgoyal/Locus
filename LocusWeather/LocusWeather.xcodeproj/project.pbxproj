@@ -12,11 +12,13 @@
 		29DC3C912830119700EBC88D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29DC3C8F2830119700EBC88D /* Main.storyboard */; };
 		29DC3C93283011A100EBC88D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29DC3C92283011A100EBC88D /* Assets.xcassets */; };
 		29DC3C96283011A100EBC88D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29DC3C94283011A100EBC88D /* LaunchScreen.storyboard */; };
-		29DC3CA1283011A200EBC88D /* LocusWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC3CA0283011A200EBC88D /* LocusWeatherTests.swift */; };
+		29DC3CA1283011A200EBC88D /* WeatherListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC3CA0283011A200EBC88D /* WeatherListViewModelTests.swift */; };
 		29DC3CAC283011A200EBC88D /* LocusWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC3CAB283011A200EBC88D /* LocusWeatherUITests.swift */; };
 		29DC3CC8283245C000EBC88D /* WeatherDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC3CC7283245C000EBC88D /* WeatherDetailsViewController.swift */; };
 		29DC3CCD2832467700EBC88D /* WeatherListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC3CCC2832467700EBC88D /* WeatherListCell.swift */; };
 		29DC3CD42832480500EBC88D /* WeatherListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC3CC2283245AE00EBC88D /* WeatherListViewController.swift */; };
+		29E26F842847AA860090D013 /* WeatherResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 29E26F832847AA860090D013 /* WeatherResponse.json */; };
+		29E26F8B2847B4E90090D013 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E26F892847B4AD0090D013 /* MockNetworkManager.swift */; };
 		29F406E1283248660019F233 /* WeatherListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29F406E0283248660019F233 /* WeatherListCell.xib */; };
 		29F406E628324EAA0019F233 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F406E528324EAA0019F233 /* WeatherModel.swift */; };
 		29F406ED283276870019F233 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F406EC283276870019F233 /* Constants.swift */; };
@@ -50,7 +52,7 @@
 		29DC3C95283011A100EBC88D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29DC3C97283011A100EBC88D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29DC3C9C283011A200EBC88D /* LocusWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocusWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		29DC3CA0283011A200EBC88D /* LocusWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusWeatherTests.swift; sourceTree = "<group>"; };
+		29DC3CA0283011A200EBC88D /* WeatherListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewModelTests.swift; sourceTree = "<group>"; };
 		29DC3CA2283011A200EBC88D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29DC3CA7283011A200EBC88D /* LocusWeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocusWeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29DC3CAB283011A200EBC88D /* LocusWeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusWeatherUITests.swift; sourceTree = "<group>"; };
@@ -58,6 +60,8 @@
 		29DC3CC2283245AE00EBC88D /* WeatherListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewController.swift; sourceTree = "<group>"; };
 		29DC3CC7283245C000EBC88D /* WeatherDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsViewController.swift; sourceTree = "<group>"; };
 		29DC3CCC2832467700EBC88D /* WeatherListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListCell.swift; sourceTree = "<group>"; };
+		29E26F832847AA860090D013 /* WeatherResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WeatherResponse.json; sourceTree = "<group>"; };
+		29E26F892847B4AD0090D013 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
 		29F406E0283248660019F233 /* WeatherListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherListCell.xib; sourceTree = "<group>"; };
 		29F406E528324EAA0019F233 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		29F406EC283276870019F233 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -124,7 +128,9 @@
 		29DC3C9F283011A200EBC88D /* LocusWeatherTests */ = {
 			isa = PBXGroup;
 			children = (
-				29DC3CA0283011A200EBC88D /* LocusWeatherTests.swift */,
+				29E26F832847AA860090D013 /* WeatherResponse.json */,
+				29E26F892847B4AD0090D013 /* MockNetworkManager.swift */,
+				29DC3CA0283011A200EBC88D /* WeatherListViewModelTests.swift */,
 				29DC3CA2283011A200EBC88D /* Info.plist */,
 			);
 			path = LocusWeatherTests;
@@ -308,6 +314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29E26F842847AA860090D013 /* WeatherResponse.json in Resources */,
 				29F406E1283248660019F233 /* WeatherListCell.xib in Resources */,
 				29DC3C96283011A100EBC88D /* LaunchScreen.storyboard in Resources */,
 				29DC3C93283011A100EBC88D /* Assets.xcassets in Resources */,
@@ -352,7 +359,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29DC3CA1283011A200EBC88D /* LocusWeatherTests.swift in Sources */,
+				29E26F8B2847B4E90090D013 /* MockNetworkManager.swift in Sources */,
+				29DC3CA1283011A200EBC88D /* WeatherListViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,7 +536,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aziksa.aziksaspeaking.LocusWeather;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.locus.weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -548,7 +556,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aziksa.aziksaspeaking.LocusWeather;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.locus.weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

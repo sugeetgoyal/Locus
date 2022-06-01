@@ -1,0 +1,179 @@
+{
+  "list": [
+    {
+      "clouds": {
+        "all": 31
+      },
+      "dt": 1654095600,
+      "dt_txt": "2022-06-01 15:00:00",
+      "main": {
+        "feels_like": 294.4,
+        "grnd_level": 1003,
+        "humidity": 57,
+        "pressure": 1021,
+        "sea_level": 1021,
+        "temp": 294.7,
+        "temp_kf": 1.41,
+        "temp_max": 294.7,
+        "temp_min": 293.29
+      },
+      "pop": 0.9,
+      "rain": {
+        "3h": 1.15
+      },
+      "sys": {
+        "pod": "d"
+      },
+      "visibility": 10000,
+      "weather": [
+        {
+          "description": "light rain",
+          "icon": "10d",
+          "id": 500,
+          "main": "Rain"
+        }
+      ],
+      "wind": {
+        "deg": 143,
+        "gust": 8.1,
+        "speed": 5.33
+      }
+    },
+    
+    {
+      "clouds": {
+        "all": 31
+      },
+      "dt": 1654095600,
+      "dt_txt": "2022-06-01 15:00:00",
+      "main": {
+        "feels_like": 300.1,
+        "grnd_level": 1003,
+        "humidity": 57,
+        "pressure": 1021,
+        "sea_level": 1021,
+        "temp": 294.7,
+        "temp_kf": 1.41,
+        "temp_max": 294.7,
+        "temp_min": 293.29
+      },
+      "pop": 0.9,
+      "rain": {
+        "3h": 1.15
+      },
+      "sys": {
+        "pod": "d"
+      },
+      "visibility": 10000,
+      "weather": [
+        {
+          "description": "light cloud",
+          "icon": "10d",
+          "id": 500,
+          "main": "Cloud"
+        }
+      ],
+      "wind": {
+        "deg": 143,
+        "gust": 8.1,
+        "speed": 5.33
+      }
+    },
+    
+    {
+      "clouds": {
+        "all": 31
+      },
+      "dt": 1654095600,
+      "dt_txt": "2022-06-01 15:00:00",
+      "main": {
+        "feels_like": 200.4,
+        "grnd_level": 1003,
+        "humidity": 57,
+        "pressure": 1021,
+        "sea_level": 1021,
+        "temp": 294.7,
+        "temp_kf": 1.41,
+        "temp_max": 294.7,
+        "temp_min": 293.29
+      },
+      "pop": 0.9,
+      "rain": {
+        "3h": 1.15
+      },
+      "sys": {
+        "pod": "d"
+      },
+      "visibility": 10000,
+      "weather": [
+        {
+          "description": "light humid",
+          "icon": "10d",
+          "id": 500,
+          "main": "Humid"
+        }
+      ],
+      "wind": {
+        "deg": 143,
+        "gust": 8.1,
+        "speed": 5.33
+      }
+    },
+    
+    {
+      "clouds": {
+        "all": 31
+      },
+      "dt": 1654095600,
+      "dt_txt": "2022-06-01 15:00:00",
+      "main": {
+        "feels_like": 250.5,
+        "grnd_level": 1003,
+        "humidity": 57,
+        "pressure": 1021,
+        "sea_level": 1021,
+        "temp": 294.7,
+        "temp_kf": 1.41,
+        "temp_max": 294.7,
+        "temp_min": 293.29
+      },
+      "pop": 0.9,
+      "rain": {
+        "3h": 1.15
+      },
+      "sys": {
+        "pod": "d"
+      },
+      "visibility": 10000,
+      "weather": [
+        {
+          "description": "To much Sunny",
+          "icon": "10d",
+          "id": 500,
+          "main": "Sunny"
+        }
+      ],
+      "wind": {
+        "deg": 143,
+        "gust": 8.1,
+        "speed": 5.33
+      }
+    }
+  ],
+  "cod": 200,
+  "cnt": 40,
+  "city": {
+    "coord": {
+      "lat": 55.7522,
+      "lon": 37.6156
+    },
+    "country": "RU",
+    "id": 524901,
+    "name": "Moscow",
+    "population": 0,
+    "sunrise": 1654044816,
+    "sunset": 1654106485,
+    "timezone": 10800
+  },
+  "message": 0
+}
