@@ -22,17 +22,7 @@ class WeatherListViewController: UIViewController {
         tableView.tableFooterView = UIView()
         
         model.delegate = self
-        
-        do {
-            try model.getWeatherList(lat: lat, long: long)
-        } catch {
-            switch error {
-            case WeatherError.wrongURL(let str) :
-                showAlert(in: self, with: "Error!", message: str)
-            default:
-                print("")
-            }
-        }
+        model.getWeatherList(lat: lat, long: long)
     }
     
     private func pushToWeatherDetailsVC(indexPath: IndexPath) {
@@ -47,14 +37,16 @@ class WeatherListViewController: UIViewController {
 }
 
 extension WeatherListViewController: WeatherListViewModelDelegate {
-    func refreshView() {
+    func refreshViewOnSuccess() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
     
-    func serviceFailed(message: String) {
-        showAlert(in: self, with: "Error!", message: message)
+    func onFailure(message: String) {
+        DispatchQueue.main.async {
+            showAlert(in: self, with: "Alert!", message: message)
+        }
     }
 }
 

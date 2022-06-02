@@ -7,15 +7,9 @@
 
 import Foundation
 
-enum WeatherError: Error {
-    case wrongURL(String)
-    case dataParsing(Error)
-    case error(String)
-}
-
 protocol WeatherListViewModelDelegate {
-    func refreshView()
-    func serviceFailed(message: String)
+    func refreshViewOnSuccess()
+    func onFailure(message: String)
 }
 
 class WeatherListViewModel {
@@ -27,7 +21,7 @@ class WeatherListViewModel {
         self.networkManager = networkManager
     }
     
-    func getWeatherList(lat: String, long: String) throws {
+    func getWeatherList(lat: String, long: String) {
 //        let urlStr = String(format: HOST+FORECAST_API, arguments: [lat,long,APP_Key])
         
         //NOTE: Calling other API because there is an issue with the above API, it is not giving response and saying API key invalid. So the below API shows common weather details all locations
@@ -35,64 +29,62 @@ class WeatherListViewModel {
         let urlStr = String(format: API_HOST+FORECAST_API_ID, arguments: [APP_Key])
         
         guard let url = URL(string: urlStr) else {
-            throw WeatherError.wrongURL("The url entered is not correct")
+            delegate?.onFailure(message: "The url entered is not correct")
+            return
         }
         
         networkManager.callURL(url: url) {[weak self] (result) in
             switch result {
             case .success(let data):
-                self?.updateViewModel(data: data, completionHandler: { (model, error) in
-                    if let err = error {
-                        switch err {
-                        case .dataParsing(let error):
-                            print(error.localizedDescription)
-                        case .error(let message):
-                            print(message)
-                        default:
-                            print("Unknown Error!")
-                        }
+                self?.updateViewModel(data: data, completionHandler: { (model, errorMessage) in
+                    if let msg = errorMessage {
+                        self?.delegate?.onFailure(message: msg)
                     } else {
                         self?.weatherList = model
-                        self?.delegate?.refreshView()
+                        self?.delegate?.refreshViewOnSuccess()
                     }
                 })
             case .failure(let error):
                 switch error {
                 case .fetchFailed(_):
-                    self?.delegate?.serviceFailed(message: error.localizedDescription)
+                    self?.delegate?.onFailure(message: error.localizedDescription)
                 case .unKnown(let message):
-                    self?.delegate?.serviceFailed(message: message)
+                    self?.delegate?.onFailure(message: message)
                 }
             }
         }
     }
     
-    func updateViewModel(data: Data, completionHandler: ([WeatherViewModel], WeatherError?) -> Void) {
+    func updateViewModel(data: Data, completionHandler: (_ dataModel: [WeatherViewModel], _ errorMessage: String?) -> Void) {
         var model = [WeatherViewModel]()
         do {
             let weatherModel = try JSONDecoder().decode(WeatherModel.self, from: data)
             
             for resItem in weatherModel.list {
-                let weather = WeatherViewModel()
-                
-                weather.temp = String(resItem.main.temp)
-                weather.feelsLikeTemp = String(resItem.main.feels_like)
-                weather.description = resItem.weather.first?.description ?? ""
-                weather.weatherStatus = resItem.weather.first?.main ?? ""
-                
+                let weather = WeatherViewModel(temp: String(resItem.main.temp),
+                                               feelsLikeTemp: String(resItem.main.feels_like),
+                                               weatherStatus: resItem.weather.first?.description ?? "",
+                                               description: resItem.weather.first?.main ?? "")
                 model.append(weather)
             }
             
             completionHandler(model, nil)
+        } catch let error as DecodingError {
+            switch error {
+            case .typeMismatch(_, let context):
+                completionHandler(model, "debugDescription: " + context.debugDescription + "codingPath: " + "\(context.codingPath)")
+            default:
+                completionHandler(model, error.localizedDescription)
+            }
         } catch {
-            completionHandler(model, WeatherError.dataParsing(error))
+            completionHandler(model, error.localizedDescription)
         }
     }
 }
 
-class WeatherViewModel {
-    var temp: String = ""
-    var feelsLikeTemp: String = ""
-    var weatherStatus: String = ""
-    var description: String = ""
+struct WeatherViewModel {
+    let temp: String
+    let feelsLikeTemp: String
+    let weatherStatus: String
+    let description: String
 }

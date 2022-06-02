@@ -1,0 +1,18 @@
+{
+  "cod": "200",
+  "cnt": 40,
+  "city": {
+    "coord": {
+      "lat": 55.7522,
+      "lon": 37.6156
+    },
+    "country": "RU",
+    "id": 524901,
+    "name": "Moscow",
+    "population": 0,
+    "sunrise": 1654044816,
+    "sunset": 1654106485,
+    "timezone": 10800
+  },
+  "message": 0
+}

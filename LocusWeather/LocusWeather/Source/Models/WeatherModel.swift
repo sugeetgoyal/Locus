@@ -29,7 +29,7 @@ struct ListItem: Codable {
     let pop: Double
     let sys: Sys
     let dt_txt: String
-    
+
     enum CodingKeys: String, CodingKey {
         case dt, main, weather, clouds, wind, visibility, pop, sys, dt_txt
     }

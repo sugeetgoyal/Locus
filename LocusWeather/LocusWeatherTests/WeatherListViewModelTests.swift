@@ -11,7 +11,7 @@ import XCTest
 class WeatherListViewModelTests: XCTestCase {
     var viewModel: WeatherListViewModel!
     var mockNetworkManager: MockNetworkManager!
-    var isWithoutFileName: Bool = false
+    var isNegativeScenario: Bool = false
     
     override func setUp() {
         self.mockNetworkManager = MockNetworkManager()
@@ -21,41 +21,42 @@ class WeatherListViewModelTests: XCTestCase {
     
     func testUpdateViewModelWithFileName() {
         mockNetworkManager.fileName = "WeatherResponse"
-        
-        do {
-            try viewModel.getWeatherList(lat: "22.079624", long: "82.139137")
-        } catch {
-            switch error {
-            case WeatherError.wrongURL(let str) :
-                XCTAssertFalse(true, str)
-            default:
-                XCTAssertFalse(true, "UnKnown")
-            }
-        }
+        isNegativeScenario = false
+        viewModel.getWeatherList(lat: "22.079624", long: "82.139137")
     }
     
     func testUpdateViewModelWithoutFileName() {
         mockNetworkManager.fileName = "dcsdc"
-        isWithoutFileName = true
-        do {
-            try viewModel.getWeatherList(lat: "22.079624", long: "82.139137")
-        } catch {
-            switch error {
-            case WeatherError.wrongURL(let str) :
-                XCTAssertFalse(true, str)
-            default:
-                XCTAssertFalse(true, "UnKnown")
-            }
-        }
+        isNegativeScenario = true
+        viewModel.getWeatherList(lat: "22.079624", long: "82.139137")
+    }
+    
+    func testUpdateViewModelWithWrongMockData() {
+        mockNetworkManager.fileName = "WrongWeatherResponse"
+        isNegativeScenario = true
+        viewModel.getWeatherList(lat: "22.079624", long: "82.139137")
+    }
+    
+    func testUpdateViewModelWithWrongCod() {
+        mockNetworkManager.fileName = "WrongCodWeatherResponse"
+        isNegativeScenario = true
+        viewModel.getWeatherList(lat: "22.079624", long: "82.139137")
+    }
+    
+    func testUpdateViewModelForFetchFailed() {
+        mockNetworkManager.fileName = "WeatherResponse"
+        mockNetworkManager.isFetchFailed = true
+        isNegativeScenario = true
+        viewModel.getWeatherList(lat: "22.079624", long: "82.139137")
     }
 }
 
 extension WeatherListViewModelTests: WeatherListViewModelDelegate {
-    func refreshView() {
+    func refreshViewOnSuccess() {
         XCTAssertTrue(true, "Success")
     }
-    
-    func serviceFailed(message: String) {
-        XCTAssertTrue(isWithoutFileName, message)
+
+    func onFailure(message: String) {
+        XCTAssertTrue(isNegativeScenario, message)
     }
 }
